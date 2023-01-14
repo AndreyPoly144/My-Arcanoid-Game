@@ -1,0 +1,322 @@
+@font-face {
+    font-family: "Pixel1" ;        
+    src: url(../fonts/Pixel.woff), url(../fonts/Pixel.woff2);
+}
+@font-face {
+    font-family: "Backto1982" ;        
+     src: url(../fonts/Backto1982.woff), url(../fonts/Backto1982.woff2);
+}
+ @font-face {
+    font-family: "Karmatic" ;        
+    src: url(../fonts/KarmaticArcade.woff) url(../fonts/KarmaticArcade.woff2);
+}   
+
+html {box-sizing: border-box;}             
+*, *::before,*::after {box-sizing: inherit}
+body{
+margin: 0;
+width: 100vw;
+height: 100vh;
+cursor: none;
+font-family: "Pixel1", "Karmatic" , "Backto1982",  sans-serif;
+}
+.start{
+    position: absolute;
+    background-color:rgba(1, 4, 65, 0.71);
+    width: 50vw;
+    height: 100vh;
+    z-index: 4;
+    font-size: 2.5vw;
+    cursor: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 25vw;
+}
+
+.start-text{
+    color: white;
+    top:50vh;
+    left: 50vw;
+    cursor: pointer;
+    animation: myAnim 2s ease 0s infinite normal forwards;
+    padding: 60px;
+}
+@keyframes myAnim {
+	0%,
+	50%,
+	100% {
+		opacity: 1;
+	}
+
+	25%,
+	75% {
+		opacity: 0.05;
+	}
+}
+.end{
+    position: absolute;
+    background-color:rgba(1, 4, 65, 0.71);
+    width: 50vw;
+    height: 100vh;
+    z-index: 4;
+    font-size: 2.5vw;
+    cursor: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    left: 25vw;
+}
+
+.end-none{display: none;}
+.end>p{
+    color: white;
+    text-transform: uppercase;
+}
+#endText{
+    font-size: 3vw;
+}
+.win{
+    position: absolute;
+    background-color:rgba(1, 4, 65, 0.71);
+    width: 50vw;
+    height: 100vh;
+    z-index: 4;
+    font-size: 3vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 25vw;
+}
+.win-none{display:none;}
+.win-text{
+    color: white;
+    top:50vh;
+    left: 50vw;
+    padding: 60px;
+}
+#endRestart{
+    font-size: 2.5vw;
+    animation: myAnim 2s ease 0s infinite normal forwards;
+    padding: 60px;
+    cursor: pointer;
+}
+#endHints{
+    font-size: 1.5vw;
+   
+}
+#topWall{
+    width: 50%;
+    height: 2vh;
+    background: black;
+    position: absolute;
+    left: 25%;
+    background-image: url(../images/border.jpg);
+    background-size: 2vw 2vw;
+    
+}
+#leftWall{
+    height: 100%;
+    width: 2vw;
+    background: black;
+    position: absolute;
+    left: 25%;
+    background-image: url(../images/border.jpg);
+    background-size: 2vw 2vw;
+    z-index: 2;
+   
+
+}
+#rightWall{
+    height: 100%;
+    width: 2vw;
+    background: black;
+    position: absolute;
+    right: 25%;
+    background-image: url(../images/border.jpg);
+    background-size: 2vw 2vw;
+}
+#bottomWall{
+    width: 50%;
+    height: 0.1vh;
+    position: absolute;
+    bottom:0;
+    left: 25%;
+  
+}
+#ball, .ball{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 3vh;
+    height: 3vh;
+    background-image:url(../images/redb.png);
+    background-size: cover;
+    background-position:center;
+    margin: -1.5vh 0 0 -1.5vh;            /*координаты по центру left и top, а в getbounding они остаются по левому верхнему краю*/
+    left: 35%;
+}
+#ball1{
+    background-image:url(../images/greenb.png);
+    background-size: cover;
+
+}
+#ball2{
+    background-image:url(../images/yelb.png);
+    background-size: cover;
+
+}
+
+#bita{
+    position: absolute;
+    width: 6.7vw;
+    height: 4vh;
+    background-image: url(../images/bita.png);
+    background-size: 100% 100%;
+    background-position:center;
+    bottom:2vh;
+    left: 45%;
+    z-index: 2;
+    transition: width 1s;
+}
+
+.boxes{
+    display: flex;
+    justify-content: space-between;
+}
+.info1{
+    background: rgb(0, 0, 0);
+    width: 25vw;
+    height: 100vh;
+    
+}
+.info2{
+    background: rgb(0, 0, 0);
+    width: 25vw;
+    height: 100vh;
+   
+}
+.game{
+    background-image: url(../images/b1.gif);
+    width: 50vw;
+    height: 100vh;
+}
+
+
+.blocks{
+    display: grid;
+    position: absolute;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(5,1fr);
+    top:6vh;
+    row-gap: 6vh;
+    width:39vw;
+    left: calc(50vw - 39vw / 2);
+    justify-items: center;
+}
+
+.b{
+    width: 4.4vw;
+    height: 3vh;
+    box-shadow: 0 4px 16px rgb(247, 245, 245);
+}
+
+.blueblock{
+    background-image: url(../images/blueblock.png);
+    background-size: 100% 100%;
+    background-position:center;
+}
+.blueblock2{
+    background-image: url(../images/blueblock2.png);
+    background-size: 100% 100%;
+    background-position:center;
+}
+.greenblock{
+    background-image: url(../images/greenblock.png);
+    background-size: 100% 100%;
+    background-position:center;
+}
+.orangeblock{
+    background-image: url(../images/orangeblock.png);
+    background-size: 100% 100%;
+    background-position:center;
+}
+.pinkblock{
+    background-image: url(../images/pinkblock.png);
+    background-size: 100% 100%;
+    background-position:center;
+}
+.redblock{
+    background-image: url(../images//redblock.png);
+    background-size: 100% 100%;
+    background-position:center;
+}
+
+
+
+
+
+@media (max-width: 1000px){
+    .info1{
+        display: none;
+    }
+    .info2{
+        display: none;
+    }
+
+    .game{
+    background-image: url(../images/b1.gif);
+    width: 100vw;
+}
+#topWall{
+    width: 100vw;
+    left: 0;
+    height: 2vh;
+    background-size: 2vh 2vh;
+}
+#leftWall{
+    height: 100vh;
+    width: 3.5vw;
+    left:0;
+    background-size: 3.5vw 3.5vw;
+}
+#rightWall{
+    height: 100vh;
+    width: 3.5vw;
+    right: 0;
+    background-size: 3.5vw 3.5vw;
+}
+#bottomWall{
+    width: 100vw;
+    height: 0.1vh;
+    left: 0;
+}
+.blocks{
+    width:80vw;
+    left: calc(50vw - 80vw / 2);
+}
+.b{
+    width: 14vw;
+}
+#bita{
+    width: 16vw;
+    height: 4vh;
+    left: 40%;
+}
+.win, .end, .start{
+width:100vw;
+left: 0;
+font-size: 5vw;
+}
+#endText{
+    font-size: 5vw;
+}
+#endRestart{
+    font-size: 4vw;
+}
+#endHints{
+    font-size: 3vw;
+}
+}

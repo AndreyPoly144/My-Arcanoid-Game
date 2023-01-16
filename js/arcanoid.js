@@ -21,7 +21,7 @@ startText.addEventListener('click', startGame)
 
 endRestart.addEventListener('click', ()=>history.go(0));   
 
-//ПОДЗСКАЗКИ
+//ПОДСКАЗКИ
 const arrEndText = ['DONT GIVE UP!', 'MOVE YOUR MOUSE FASTER!', 'DONT DROP ALL THE BALLS!', 'U HAVE TO HIT ALL BLOCKS FOR WIN!', "AREN'T YOU TIRED?"]
 let randomEndText = arrEndText[Math.floor(Math.random() * arrEndText.length)];    
 endHints.textContent=randomEndText;
@@ -74,12 +74,11 @@ let posX2 = randomBlock2.getBoundingClientRect().left + bWidth / 2;
 let posY2 = randomBlock2.getBoundingClientRect().top + bHeight / 2;
 (ball2.style.top = posY2 + "px"), (ball2.style.left = posX2 + "px");
 
-
 function startGame(){
 start.style.display='none'
 music1.play()
 document.addEventListener("mousemove", moveBita); 
-let idGo = setInterval(playGame, 0);
+let idGo = setInterval(playGame, 1);
 
 //МЕХАНИКА МЯЧЕЙ
 function playGame() {
@@ -221,14 +220,39 @@ posX2 += vx2, posY2 += vy2;
         }
     });
 }
+let difference=0;   
+let position;              
+let previous=0;
 //МЕХАНИКА БИТЫ
 function moveBita(e) {
-    bitaX = e.clientX;
-    if (bitaX <= LEFT) {
-        bitaX = LEFT;
+    let direction =e.clientX-previous;                                                  
+    bStyLeft=bita.getBoundingClientRect().left;
+    if (e.clientX <= LEFT) {                                                                    
+        position="left";
+        if (direction<0 && bStyLeft <= LEFT ){
+            difference=LEFT-e.clientX;
+            bitaX =LEFT + "px";
+        }
+        if (direction<0 && bStyLeft >LEFT){bitaX=difference+e.clientX +"px"}
+        if (direction>0){bitaX=difference+e.clientX +"px"}     
     }
-    if (bitaX + WBITA >= RIGHT) {
-        bitaX = RIGHT - WBITA;
+     if (e.clientX + WBITA>= RIGHT) {                                                                           
+        position="right";
+            if (direction>0 && (bStyLeft+WBITA)>=RIGHT){
+            difference=RIGHT-e.clientX;
+            bitaX  = RIGHT - WBITA+"px"; 
     }
-    bita.style.left = bitaX + "px";   
+            if (direction>0 && (bStyLeft+WBITA)< RIGHT){bitaX=difference+e.clientX -WBITA +"px"}
+            if (direction<0){bitaX=difference+e.clientX-WBITA +"px"}
+}
+    if ((e.clientX + WBITA)< RIGHT && e.clientX>LEFT) {                                                     
+        if(position==="right"){ bitaX = e.clientX +difference -WBITA + "px"; }
+       else {position="center"
+        bitaX = e.clientX +difference + "px";  }
+}
+    bita.style.left=bitaX;
+    if(bita.getBoundingClientRect().left<=LEFT){bita.style.left=LEFT+"px"}
+    if((bita.getBoundingClientRect().left+WBITA)>=RIGHT){bita.style.left=RIGHT - WBITA+"px"}
+    previous=e.clientX;
+    console.log(e.clientX, position, difference, direction);
 }}

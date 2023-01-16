@@ -233,26 +233,25 @@ function moveBita(e) {
             difference=LEFT-e.clientX;
             bitaX =LEFT + "px";
         }
-        if (direction<0 && bStyLeft >LEFT){bitaX=difference+e.clientX +"px"}
-        if (direction>0){bitaX=difference+e.clientX +"px"}     
+        else if (direction<0 && bStyLeft >LEFT){bitaX=difference+e.clientX +"px"}
+        else if (direction>0){bitaX=difference+e.clientX +"px"}     
     }
-     if (e.clientX + WBITA>= RIGHT) {                                                                           
-        position="right";
-            if (direction>0 && (bStyLeft+WBITA)>=RIGHT){
-            difference=RIGHT-e.clientX;
-            bitaX  = RIGHT - WBITA+"px"; 
-    }
-            if (direction>0 && (bStyLeft+WBITA)< RIGHT){bitaX=difference+e.clientX -WBITA +"px"}
-            if (direction<0){bitaX=difference+e.clientX-WBITA +"px"}
-}
-    if ((e.clientX + WBITA)< RIGHT && e.clientX>LEFT) {                                                     
-        if(position==="right"){ bitaX = e.clientX +difference -WBITA + "px"; }
+    else if (e.clientX< RIGHT && e.clientX>LEFT) {                                                     
+        if(position==="right"){ bitaX = e.clientX +difference  + "px"; position="center"}
        else {position="center"
         bitaX = e.clientX +difference + "px";  }
+}
+     else if (e.clientX >= RIGHT) {                                                                           
+        position="right";
+            if (direction>0 && (bStyLeft+WBITA)>=RIGHT){
+            bitaX  = (RIGHT - WBITA)+"px"; 
+            difference=RIGHT-e.clientX;
+    }
+            else if (direction>0 && (bStyLeft+WBITA)< RIGHT){bitaX=difference+e.clientX  +"px"}
+            else if (direction<0){bitaX=difference+e.clientX +"px"}
 }
     bita.style.left=bitaX;
     if(bita.getBoundingClientRect().left<=LEFT){bita.style.left=LEFT+"px"}
     if((bita.getBoundingClientRect().left+WBITA)>=RIGHT){bita.style.left=RIGHT - WBITA+"px"}
     previous=e.clientX;
-    console.log(e.clientX, position, difference, direction);
 }}

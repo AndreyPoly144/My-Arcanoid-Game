@@ -39,9 +39,9 @@ let HBITA = bStyle.height;
 let posBitaY = bStyle.top;                     
        
 //МЯЧИ
-let vx = 1, vy = 1; 
-let vx1 = 1,vy1 = 1;
-let vx2 = 1,vy2 = 1;
+let vx = 0.8, vy = 2.4; 
+let vx1 = 0.8,vy1 = 2.4;
+let vx2 = 0.8,vy2 = 2.4;
 ball.style.left=bStyle.left+bStyle.width/2+'px';                    
 ball.style.top=bStyle.top-ball.getBoundingClientRect().width/16+'px';     
 let ballStyle = ball.getBoundingClientRect();
